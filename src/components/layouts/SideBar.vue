@@ -1,6 +1,8 @@
 <template>
 	<v-navigation-drawer
-		v-model="drawer"
+		:value="drawer"
+		mobile-breakpoint="960"
+		@input="inputEvent"
 		app
 	>
 		<v-sheet
@@ -37,10 +39,10 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
 	name: "SideBar",
 	data: () => ({
-		drawer: null,
 		links: [
 			['mdi-inbox-arrow-down', 'Inbox'],
 			['mdi-send', 'Send'],
@@ -48,6 +50,17 @@ export default {
 			['mdi-alert-octagon', 'Spam'],
 		],
 	}),
+	methods: {
+		...mapActions(['setDrawer']),
+		inputEvent(event) {
+			if (!event) {
+				this.setDrawer(event)
+			}
+		}
+	},
+	computed: {
+		...mapGetters(['drawer'])
+	}
 }
 </script>
 

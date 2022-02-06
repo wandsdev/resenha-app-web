@@ -5,6 +5,9 @@
 		elevation="2"
 	>
 		<v-container class="py-0 fill-height">
+
+			<v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="toggleClick"></v-app-bar-nav-icon>
+
 			<v-btn v-for="link in links2" :key="link" text>
 				{{ link }}
 			</v-btn>
@@ -25,6 +28,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
 	name: "HeaderBar",
 	data: () => ({
@@ -34,7 +38,13 @@ export default {
 			'Profile',
 			'Updates',
 		],
-	})
+	}),
+	methods: {
+		...mapActions(['setDrawer']),
+		toggleClick() {
+			this.setDrawer()
+		}
+	}
 }
 </script>
 
