@@ -19,7 +19,7 @@
 
 		<v-list class="pt-0">
 			<v-list-item
-				v-for="[icon, text] in items"
+				v-for="[icon, text] in links"
 				:key="icon"
 				link
 			>
@@ -39,14 +39,7 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
 	name: "SideBar",
-	data: () => ({
-		links: [
-			['mdi-inbox-arrow-down', 'Inbox'],
-			['mdi-send', 'Send'],
-			['mdi-delete', 'Trash'],
-			['mdi-alert-octagon', 'Spam'],
-		],
-	}),
+	data: () => ({}),
 	methods: {
 		...mapActions(['setDrawer']),
 		inputEvent(event) {
@@ -57,7 +50,7 @@ export default {
 	},
 	computed: {
 		...mapGetters(['drawer']),
-		...mapGetters('Sidebar', ['items'])
+		...mapGetters('Sidebar', ['links'])
 	}
 }
 </script>
