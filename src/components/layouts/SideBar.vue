@@ -5,10 +5,7 @@
 		@input="inputEvent"
 		app
 	>
-		<v-sheet
-			color="grey lighten-4"
-			class="pa-4"
-		>
+		<v-sheet color="grey lighten-4"	class="pa-4">
 			<v-avatar
 				class="mb-4"
 				color="grey darken-1"
@@ -22,7 +19,7 @@
 
 		<v-list class="pt-0">
 			<v-list-item
-				v-for="[icon, text] in links"
+				v-for="[icon, text] in items"
 				:key="icon"
 				link
 			>
@@ -59,7 +56,8 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['drawer'])
+		...mapGetters(['drawer']),
+		...mapGetters('Sidebar', ['items'])
 	}
 }
 </script>

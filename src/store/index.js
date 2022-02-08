@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import Sidebar from './sidebar'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -20,5 +22,7 @@ export default new Vuex.Store({
 	getters: {
 		drawer: (state) => state.drawer
 	},
-	modules: {}
+	modules: {
+		Sidebar
+	}
 })
