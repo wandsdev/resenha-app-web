@@ -1,22 +1,21 @@
 const state = {
-	dashboardItems: [
-		['mdi-inbox-arrow-down', 'Inbox'],
-		['mdi-send', 'Send'],
-		['mdi-delete', 'Trash'],
-		['mdi-alert-octagon', 'Spam'],
-	]
+	links: []
 }
 
 const mutations = {
-
+	SET_LINKS: (state, payload) => {
+		state.links = payload
+	}
 }
 
 const actions = {
-
+	setLinks: (context, payload) => {
+		context.commit('SET_LINKS', payload)
+	}
 }
 
 const getters = {
-	items: (state) => state.dashboardItems
+	links: (state) => state.links
 }
 
 export default { namespaced: true, state, mutations, actions, getters };

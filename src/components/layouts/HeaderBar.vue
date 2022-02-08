@@ -8,16 +8,24 @@
 
 			<v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="toggleClick"></v-app-bar-nav-icon>
 
-				<tooltip-button
-					v-for="(link, index) in links"
-					:key="index"
-					color="secondary"
-					icon
-					:icon-name="link.icon"
-					icon-size="48"
-					bottom
-					cssClass="mx-4"
-					:tooltip-label="link.tooltip" />
+			<v-tabs >
+				<v-tabs-slider></v-tabs-slider>
+				<v-tab
+					v-for="(link, index) in links" :key="index"
+					@click="clickTab(link.path)"
+				>
+					<v-tooltip class="py-2" bottom>
+						<template v-slot:activator="{ on, attrs }">
+								<v-icon v-bind="attrs"
+										v-on="on"
+										size="32">
+									{{ link.icon }}
+								</v-icon>
+						</template>
+						<span class="py-2">{{ link.tooltip }}</span>
+					</v-tooltip>
+				</v-tab>
+			</v-tabs>
 
 			<v-spacer></v-spacer>
 
@@ -28,7 +36,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-import headerBarLinks from '@/config/links/headerBarItems';
+import headerBarLinks from '@/config/links/headerBarLinks';
 import TooltipButton from "@/components/ui/TooltipButton";
 export default {
 	name: "HeaderBar",
@@ -38,12 +46,17 @@ export default {
 	}),
 	mounted() {
 		this.links = headerBarLinks
-		console.log(this.links)
 	},
 	methods: {
 		...mapActions(['setDrawer']),
 		toggleClick() {
 			this.setDrawer()
+		},
+		clickTab(path) {
+			if (path !== this.$router.currentRoute.path) {
+				this.$router.push(path)
+			}
+
 		}
 	}
 }

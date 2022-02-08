@@ -6,13 +6,23 @@ Vue.use(VueRouter)
 const routes = [
 	{
 		path: '/',
-		name: 'Home',
-		redirect: { name: 'Dashboard' }
+		name: 'init',
+		redirect: { name: 'Home' }
 	},
 	{
-		path: '/dashboard',
-		name: 'Dashboard',
-		component: () => import('@/views/Dashboard.vue')
+		path: '/home',
+		name: 'Home',
+		component: () => import('@/views/Home/Home.vue')
+	},
+	{
+		path: '/usuarios',
+		name: 'Users',
+		component: () => import('@/views/Users/Users.vue')
+	},
+	{
+		path: '/grupos',
+		name: 'Groups',
+		component: () => import('@/views/Groups/Groups.vue')
 	},
   // {
   //   path: '/about',
